@@ -1,0 +1,17 @@
+{
+  "name": "roundrobin-interface",
+  "version": "1.0.0",
+  "description": "Round Robin Tournament Scheduler Interface",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Rob Vatcher",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "ejs": "^3.1.6"
+  }
+}
+
+
