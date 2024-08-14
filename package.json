@@ -4,20 +4,12 @@
   "description": "Round Robin Tournament Scheduler Interface",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "predeploy": "node generateStaticFiles.js", 
-    "deploy": "gh-pages -d public" 
+    "start": "node app.js"
   },
   "author": "Rob Vatcher",
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
     "ejs": "^3.1.6"
-  },
-  "devDependencies": {
-    "gh-pages": "^3.2.3"
   }
 }
-
-
-
