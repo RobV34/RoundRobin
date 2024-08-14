@@ -1,130 +1,264 @@
-/* General body styling */
 body {
-  background-color: #000; /* Black background */
-  color: #fff; /* White text */
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
+  background-color: #000;
+  color: #fff;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin: 0;
   min-height: 100vh;
 }
 
-/* Banner styling for Washerpalooza */
-.banner {
-  background-color: #007bff; /* Blue background for the banner */
-  width: 100%;
-  padding: 20px 0;
+.banner h1 {
+  font-size: 8rem;
   text-align: center;
-  font-size: 2.5rem;
-  font-weight: bold;
+  margin-bottom: 20px;
+  background: linear-gradient(120deg, #C0C0C0, #FFD700);
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.5); /* Gold shadow */
+}
+
+.container {
+  background: #1C1C1C;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(192, 192, 192, 0.5); /* Silver shadow */
+  width: 80%;
+  max-width: 500px;
+  margin-bottom: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 3rem;
+  color: #eadd90; /* Gold color */
+}
+
+form {
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+input[type="text"] {
+  padding: 12px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #C0C0C0; /* Silver border */
+  background-color: #2E2E2E; /* Darker background for input */
   color: #fff;
   margin-bottom: 20px;
+  box-sizing: border-box;
+  font-size: 1.5rem;
 }
 
-/* Container styling for the main content */
-.container {
-  text-align: center;
-  padding: 20px;
-  border: 2px solid #fff; /* White border */
-  border-radius: 10px;
-  max-width: 600px;
+button[type="submit"], button#start-new-game {
+  padding: 10px 20px;
+  background-color: #FFD700; /* Gold color */
+  border: none;
+  border-radius: 5px;
+  color: black;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
   width: 100%;
-  background-color: #222; /* Dark background for contrast */
+  margin-top: 15px;
 }
 
-/* Champions box styling */
+button[type="submit"]:hover, button#start-new-game:hover {
+  background-color: #C0C0C0; /* Silver color */
+  color: black;
+  transform: scale(1.05);
+}
+
 .champions {
   text-align: center;
-  padding: 20px;
-  border: 2px solid #fff; /* White border */
-  border-radius: 10px;
-  max-width: 600px;
-  width: 100%;
-  background-color: #333; /* Slightly different dark background for distinction */
   margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #2E2E2E; /* Darker background */
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(192, 192, 192, 0.5); /* Silver shadow */
 }
 
 .champions h2 {
-  font-size: 1.5rem;
   margin-bottom: 10px;
+  font-size: 1.8rem;
+  color: #FFD700; /* Gold color */
 }
 
 .champions ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
-.champions li {
-  font-size: 1.2rem;
-  margin: 5px 0;
+.champions ul li {
+  margin: 8px 0;
+  font-size: 1.8rem;
+  color: #C0C0C0; /* Silver color */
 }
 
-/* Heading styles */
-h1 {
-  font-size: 5rem;
-  margin: 10px 0;
+#schedule-output, #playoff-output {
+  margin-top: 25px;
+  width: 100%;
+  text-align: center;
 }
 
-h2 {
-  font-size: 2.5rem;
-  margin: 5px 0;
+#winnerDisplay {
+  margin-top: 25px;
+  font-size: 1.8rem;
+  color: #FFD700; /* Gold color */
 }
 
-/* Form label and input styles */
-label {
-  display: block;
-  margin-bottom: 10px;
-  font-size: 1.2rem;
-}
 
-input[type="text"] {
-  padding: 10px;
-  width: 80%;
+.container {
+  background: #1C1C1C;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(192, 192, 192, 0.5); /* Silver shadow */
+  width: 90%; /* Increased width to give more room */
+  max-width: 800px; /* Maximum width increased */
   margin-bottom: 20px;
-  border-radius: 5px;
-  border: 1px solid #fff;
-  background-color: #333; /* Darker background for input fields */
-  color: #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Button styles */
-button {
+#schedule-output .round div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+#schedule-output .round input[type="number"] {
+  width: 120px; /* Further increased width for more room */
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #C0C0C0; /* Silver border */
+  background-color: #2E2E2E; /* Darker background */
+  color: #fff;
+  text-align: center;
+  font-size: 1rem;
+}
+
+#schedule-output .round button {
   padding: 10px 20px;
-  font-size: 1.2rem;
+  background-color: #FFD700; /* Gold color */
   border: none;
   border-radius: 5px;
-  background-color: #007bff; /* Blue button */
-  color: #fff;
+  color: black;
   cursor: pointer;
-  margin-top: 10px;
+  transition: background-color 0.3s, transform 0.3s;
+  font-size: 1rem;
+  margin-left: 15px; /* Increased spacing between input and button */
 }
 
-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+#schedule-output .round button:hover {
+  background-color: #C0C0C0; /* Silver color */
+  transform: scale(1.05);
 }
 
-button[disabled] {
-  background-color: #444; /* Gray color when button is disabled */
-  cursor: not-allowed;
+#schedule-output .round .score-label {
+  flex: 1;
+  text-align: right;
+  margin-right: 20px; /* Increased spacing between label and input */
+  color: #FFD700; /* Gold color */
+  font-size: 1.1rem;
 }
 
-/* Team and round styling */
-.team, .round {
-  margin-top: 10px;
+#schedule-output .round .team-score-input {
+  flex: 0 0 120px; /* Updated to match input width */
 }
 
-/* Score input fields styling */
-.score {
-  padding: 5px;
-  margin: 5px;
+#schedule-output .round {
+  margin-bottom: 25px; /* More space between rounds */
+}
+
+#playoff-output {
+  margin-top: 40px;
+  width: 100%;
+  text-align: center;
+}
+
+#playoff-output .round {
+  margin-bottom: 25px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#playoff-output .round div {
+  width: 100%;
+  max-width: 800px; /* Ensuring the width is consistent with the main schedule */
+  display: flex;
+  justify-content: space-between; /* Space between elements */
+  align-items: center;
+}
+
+#playoff-output .score-label {
+  flex: 1;
+  text-align: right;
+  margin-right: 20px;
+  color: #FFD700; /* Gold color */
+  font-size: 1.1rem;
+}
+
+#playoff-output input[type="number"] {
+  width: 100px; /* Width of the score inputs */
+  padding: 8px;
   border-radius: 5px;
-  border: 1px solid #fff;
-  background-color: #333; /* Darker background for score input fields */
+  border: 1px solid #C0C0C0; /* Silver border */
+  background-color: #2E2E2E; /* Darker background */
   color: #fff;
+  text-align: center;
+  font-size: 1rem;
+  margin: 0 5px; /* Space between inputs */
 }
 
-/* Playoff button container styling */
-#playoff-button-container {
-  margin-top: 20px;
+#playoff-output button {
+  padding: 10px 20px;
+  background-color: #FFD700; /* Gold color */
+  border: none;
+  border-radius: 5px;
+  color: black;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  font-size: 1rem;
+  margin-left: 10px;
+}
+
+#playoff-output button:hover {
+  background-color: #C0C0C0; /* Silver color */
+  transform: scale(1.05);
+}
+
+#generate-playoff-schedule-button {
+  padding: 15px 30px;
+  background-color: #FFD700; /* Gold color */
+  border: none;
+  border-radius: 10px;
+  color: black;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 300px; /* Explicit width for the button */
+  margin: 0 auto; /* Center the button */
+}
+
+#generate-playoff-schedule-button:hover {
+  background-color: #C0C0C0; /* Silver color */
+  transform: scale(1.05);
 }

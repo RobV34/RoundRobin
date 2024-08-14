@@ -1,3 +1,11 @@
+// Variables to store results and submitted count
+let results = {};
+let playoffResults = {};
+let submittedCount = 0;
+
+// Last year's winners (example: change the value as needed)
+const lastYearWinners = "rob, tara";
+
 document.getElementById('schedule-form').addEventListener('submit', handleScheduleFormSubmit);
 
 // New Game Button Event Listener
@@ -9,8 +17,12 @@ async function handleScheduleFormSubmit(event) {
 }
 
 async function generateSchedule() {
-  const players = document.getElementById('players').value;
-  
+  const lastYearWinnersInput = document.getElementById('last-year-winners').value.trim();
+  const playersInput = document.getElementById('players').value.trim();
+
+  // Combine last year's winners and the new player names
+  const players = lastYearWinnersInput ? `${lastYearWinnersInput}, ${playersInput}` : playersInput;
+
   try {
     const response = await fetch('/schedule', {
       method: 'POST',
@@ -28,9 +40,10 @@ async function generateSchedule() {
     displayTeams(teams);
     displaySchedule(schedule);
 
-    // Persist teams and schedule in localStorage
+    // Persist teams, schedule, and initialize submitted count in localStorage
     persistData('teams', teams);
     persistData('schedule', schedule);
+    persistData('submittedCount', submittedCount);
 
   } catch (error) {
     console.error('Failed to generate schedule:', error);
@@ -40,7 +53,7 @@ async function generateSchedule() {
 function displayTeams(teams) {
   const output = document.getElementById('schedule-output');
   output.innerHTML = '<h2>Teams</h2>';
-  
+
   teams.forEach(team => {
     const teamDiv = document.createElement('div');
     teamDiv.classList.add('team');
@@ -51,12 +64,12 @@ function displayTeams(teams) {
 
 function displaySchedule(schedule) {
   const output = document.getElementById('schedule-output');
-  
+
   schedule.forEach((round, index) => {
     const roundDiv = document.createElement('div');
     roundDiv.classList.add('round');
     roundDiv.innerHTML = `<h2>Round ${index + 1}</h2>`;
-    
+
     round.forEach(match => {
       const matchDiv = document.createElement('div');
       matchDiv.innerHTML = `
@@ -67,10 +80,10 @@ function displaySchedule(schedule) {
         <button id="submit-${match[0]}-${match[1]}" onclick="handleResultSubmit('${match[0]}', '${match[1]}', ${index})">Submit</button>`;
       roundDiv.appendChild(matchDiv);
     });
-    
+
     output.appendChild(roundDiv);
   });
-  
+
   output.innerHTML += '<div id="playoff-button-container"></div>';
 }
 
@@ -86,10 +99,11 @@ function loadData(key) {
 function loadResultsFromLocalStorage() {
   results = loadData('roundRobinResults') || {};
   playoffResults = loadData('playoffResults') || {};
-  
+  submittedCount = loadData('submittedCount') || 0;
+
   const teams = loadData('teams');
   const schedule = loadData('schedule');
-  
+
   if (teams && schedule) {
     displayTeams(teams);
     displaySchedule(schedule);
@@ -123,12 +137,17 @@ function handleResultSubmit(team1, team2, roundIndex) {
     persistData(matchKey, { team1Score, team2Score });
 
     disableSubmitButton(team1, team2);
-    persistData('roundRobinResults', results);
+
+    // Increment submitted count and persist it
+    submittedCount++;
+    persistData('submittedCount', submittedCount);
+
+    // Check if playoffs should be generated
     checkForPlayoffs();
 
-    alert(`Result recorded: ${team1} ${team1Score} - ${team2} ${team2Score}`);
+    console.log(`Result recorded: ${team1} ${team1Score} - ${team2} ${team2Score}`);
   } else {
-    alert("Please enter valid scores for both teams.");
+    console.error("Please enter valid scores for both teams.");
   }
 }
 
@@ -209,15 +228,15 @@ function generatePlayoffs() {
 
 function recordPlayoffResult(team1, team2, matchId) {
   const team1Score = document.getElementById(`${matchId}-team1`).value;
-  const team2Score = document.getElementById(`${matchId}-team2}`).value;
+  const team2Score = document.getElementById(`${matchId}-team2`).value;
 
   if (team1Score !== "" && team2Score !== "") {
     updatePlayoffResults(team1, team2, parseInt(team1Score), parseInt(team2Score));
     disableSubmitButton(matchId);
     persistData('playoffResults', playoffResults);
-    alert(`Playoff result recorded: ${team1} ${team1Score} - ${team2} ${team2Score}`);
+    console.log(`Playoff result recorded: ${team1} ${team1Score} - ${team2} ${team2Score}`);
   } else {
-    alert("Please enter valid scores for both teams.");
+    console.error("Please enter valid scores for both teams.");
   }
 }
 
@@ -249,7 +268,7 @@ function declareFinalWinner(finalId) {
     document.getElementById(`declare-${finalId}`).disabled = true;
     persistData('tournamentWinner', winner);
   } else {
-    alert("Please enter valid scores for both teams.");
+    console.error("Please enter valid scores for both teams.");
   }
 }
 
@@ -265,9 +284,10 @@ function startNewGame() {
   // Clear local storage
   localStorage.clear();
 
-  // Reset the results objects
+  // Reset the results objects and submitted count
   results = {};
   playoffResults = {};
+  submittedCount = 0;
 
   // Clear the UI components
   document.getElementById('schedule-output').innerHTML = '';
@@ -280,6 +300,8 @@ function startNewGame() {
 
 // Load the previous game state, if any, when the page loads
 window.onload = loadResultsFromLocalStorage;
+
+
 
 
 

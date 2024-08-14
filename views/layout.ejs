@@ -14,13 +14,17 @@
     <h2>Arthur William George Vatcher</h2>
     <h2>Washer Tournament</h2>
     <form id="schedule-form">
+      <label for="last-year-winners">Last Year's Winners (comma-separated):</label>
+      <input type="text" id="last-year-winners" name="lastYearWinners" placeholder="e.g., rob, tara">
+      
       <label for="players">Enter Player Names (comma-separated):</label>
       <input type="text" id="players" name="players" required>
+
       <button type="submit">Generate Schedule</button>
     </form>
     <div id="schedule-output"></div>
-    <div id="playoff-output"></div> <!-- New div for playoff schedule -->
-    <p id="winnerDisplay"></p> <!-- New element to display the winner -->
+    <div id="playoff-output"></div>
+    <p id="winnerDisplay"></p>
   </div>
   <div class="champions">
     <h2>Past Champions</h2>
@@ -28,13 +32,14 @@
       <li>2023: Tara and Rob</li>
       <li>2021: Sue and Mike</li>
       <li>2020: Wanda and Garry</li>
-      <!-- Add more past champions as needed -->
     </ul>
   </div>
   <div class="container">
-    <button id="start-new-game" onclick="startNewGame()">Start New Game</button> <!-- Start New Game Button -->
+    <button id="start-new-game" onclick="startNewGame()">Start New Game</button>
   </div>
   <script src="/script.js"></script>
 </body>
 </html>
+
+
 
