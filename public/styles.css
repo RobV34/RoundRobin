@@ -1,9 +1,7 @@
 /* General body styling */
 body {
-  background: linear-gradient(-45deg, #000, #222, #000, #333);
-  background-size: 400% 400%;
-  animation: gradientAnimation 15s ease infinite;
-  color: #fff;
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
   font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;
@@ -12,21 +10,9 @@ body {
   min-height: 100vh;
 }
 
-@keyframes gradientAnimation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
 /* Banner styling for Washerpalooza */
 .banner {
-  background-color: #007bff;
+  background-color: #007bff; /* Blue background for the banner */
   width: 100%;
   padding: 20px 0;
   text-align: center;
@@ -34,54 +20,29 @@ body {
   font-weight: bold;
   color: #fff;
   margin-bottom: 20px;
-  position: relative;
-  z-index: 1;
-  animation: bannerAnimation 2s ease-out;
-}
-
-@keyframes bannerAnimation {
-  0% {
-    opacity: 0;
-    transform: translateY(-50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 /* Container styling for the main content */
 .container {
   text-align: center;
   padding: 20px;
-  border: 2px solid #fff;
+  border: 2px solid #fff; /* White border */
   border-radius: 10px;
   max-width: 600px;
   width: 100%;
-  background-color: #222;
-  z-index: 2;
-  position: relative;
+  background-color: #222; /* Dark background for contrast */
 }
 
 /* Champions box styling */
 .champions {
   text-align: center;
   padding: 20px;
-  border: 2px solid #fff;
+  border: 2px solid #fff; /* White border */
   border-radius: 10px;
   max-width: 600px;
   width: 100%;
-  background-color: #333;
+  background-color: #333; /* Slightly different dark background for distinction */
   margin-top: 20px;
-  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 1s ease;
-}
-
-.champions.visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .champions h2 {
@@ -123,7 +84,7 @@ input[type="text"] {
   margin-bottom: 20px;
   border-radius: 5px;
   border: 1px solid #fff;
-  background-color: #333;
+  background-color: #333; /* Darker background for input fields */
   color: #fff;
 }
 
@@ -133,42 +94,19 @@ button {
   font-size: 1.2rem;
   border: none;
   border-radius: 5px;
-  background-color: #007bff;
+  background-color: #007bff; /* Blue button */
   color: #fff;
   cursor: pointer;
   margin-top: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 button:hover {
-  background-color: #0056b3;
-  transform: scale(1.05);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  background-color: #0056b3; /* Darker blue on hover */
 }
 
 button[disabled] {
-  background-color: #444;
+  background-color: #444; /* Gray color when button is disabled */
   cursor: not-allowed;
-}
-
-/* Specific styling for the Generate Schedule button with pulse effect */
-#generate-schedule-button {
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 5px #007bff;
-  }
-  50% {
-    transform: scale(1.1);
-    box-shadow: 0 0 25px #007bff;
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 5px #007bff;
-  }
 }
 
 /* Team and round styling */
@@ -182,7 +120,7 @@ button[disabled] {
   margin: 5px;
   border-radius: 5px;
   border: 1px solid #fff;
-  background-color: #333;
+  background-color: #333; /* Darker background for score input fields */
   color: #fff;
 }
 
@@ -190,12 +128,3 @@ button[disabled] {
 #playoff-button-container {
   margin-top: 20px;
 }
-
-/* Scroll animation for champions section */
-window.addEventListener('scroll', function() {
-  const championsSection = document.querySelector('.champions');
-  const rect = championsSection.getBoundingClientRect();
-  if (rect.top < window.innerHeight) {
-    championsSection.classList.add('visible');
-  }
-});
